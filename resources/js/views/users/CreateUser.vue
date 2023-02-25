@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { closeToast, showLoadingToast } from 'vant';
 import { createUser } from '@/services/users.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const userName = ref('');
 const email = ref('');
 const password = ref('');
@@ -13,7 +16,7 @@ const onSubmit = () => {
         password: password.value
     }
     createUser(user).then((result) => {
-        console.log(result);
+        router.push('/');
     })
 }
 

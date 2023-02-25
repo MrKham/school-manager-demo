@@ -18,4 +18,9 @@ class UserController extends Controller
         $this->userService->store($request);
         return true;
     }
+
+    public function list()
+    {
+        return $this->userService->list();
+    }
 }

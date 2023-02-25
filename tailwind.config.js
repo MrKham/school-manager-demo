@@ -8,12 +8,6 @@ module.exports = {
     "./resources/js/views/**/*.{html,js,vue}",
     "./resources/js/components/**/*.{html,js,vue}",
   ],
-  purge: [
-    "./resources/js/*.{html,js,vue}",
-    "./resources/js/layouts/**/*.{html,js,vue}",
-    "./resources/js/views/**/*.{html,js,vue}",
-    "./resources/js/components/**/*.{html,js,vue}",
-  ],
   theme: {
     extend: {},
   },

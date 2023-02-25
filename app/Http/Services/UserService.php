@@ -16,4 +16,9 @@ class UserService
             'password' => Hash::make($request->input('password')),
         ]);
     }
+
+    public function list()
+    {
+        return User::all();
+    }
 }
