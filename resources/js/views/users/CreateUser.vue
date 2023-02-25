@@ -1,48 +1,41 @@
 <script setup>
 import { ref } from 'vue';
 import { closeToast, showLoadingToast } from 'vant';
-const value1 = ref('');
-const value2 = ref('');
-const value3 = ref('abc');
-const value4 = ref('');
-const pattern = /\d{6}/;
+import { createUser } from '@/services/users.js'
+const userName = ref('');
+const email = ref('');
+const password = ref('');
 
-const validator = (val) => /1\d{10}/.test(val);
+const onSubmit = () => {
+    const user = {
+        name: userName.value,
+        email: email.value,
+        password: password.value
+    }
+    createUser(user).then((result) => {
+        console.log(result);
+    })
+}
 
-const validatorMessage = (val) => `${val} is invalid`;
-
-const asyncValidator = (val) =>
-    new Promise((resolve) => {
-        showLoadingToast('Validating...');
-
-        setTimeout(() => {
-            closeToast();
-            resolve(val === '1234');
-        }, 1000);
-    });
-
-const onFailed = (errorInfo) => {
-    console.log('failed', errorInfo);
-};
 </script>
 
 <template>
-    <van-form @failed="onFailed">
+    <van-form @submit="onSubmit">
         <van-cell-group inset>
             <van-field 
-              v-model="value1"
+              v-model="userName"
               name="pattern"
               placeholder="Họ Và Tên"
               label="Họ Và Tên"
             />
             <van-field 
-              v-model="value2"
+              v-model="email"
               name="validator"
               placeholder="Địa Chỉ Email"
               label="Địa Chỉ Email"
             />
             <van-field
-              v-model="value3"
+              v-model="password"
               placeholder="Mật Khẩu"
               label="Mật Khẩu"
               type="password"
